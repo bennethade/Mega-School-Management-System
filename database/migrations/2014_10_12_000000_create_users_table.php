@@ -15,10 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+
+            $table->string('user_type')->comment('1:Admin, 2:Teacher, 3:Student, 4:Parent');
+            $table->tinyInteger('is_delete')->default(0)->comment('0:not deleted, 1:deleted');
+            $table->string('keep_track');
+            
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

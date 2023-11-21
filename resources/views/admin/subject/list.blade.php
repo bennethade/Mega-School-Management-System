@@ -10,10 +10,10 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Admin List : ({{ $getRecord->total() }}) Total Admins</h1>
+          <h1>Subject List </h1>
         </div>
         <div class="col-sm-6" style="text-align: right;">
-          <a href="{{ route('admin.add') }}" class="btn btn-primary">Add New Admin</a>
+          <a href="{{ route('subject.add') }}" class="btn btn-primary">Add New Subject</a>
           
         </div>
         
@@ -28,21 +28,27 @@
       
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Search Admin</h3>
+              <h3 class="card-title">Search Subject</h3>
             </div>
             
             <form method="get" action=" ">
               <div class="card-body">
                 <div class="row">
-                  <div class="form-group col-md-3">
-                    <label>Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter Name" value="{{ Request::get('name') }}">
-                  </div>
+                  
+                    <div class="form-group col-md-3">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter Name" value="{{ Request::get('name') }}">
+                    </div>
 
-                  <div class="form-group col-md-3">
-                    <label>Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Enter email" value="{{ Request::get('email') }}">
-                  </div>
+                    <div class="form-group col-md-3">
+                        <label>Subject Type</label>
+                        <select class="form-control" name="type">
+                            <option value="">Select Type</option>
+                            <option {{ ( Request::get('type') == 'theory') ? 'selected' : '' }} value="theory">Theory</option>
+                            <option {{ ( Request::get('type') == 'practical' ) ? 'selected' : '' }} value="practical">Practical</option>
+                        </select>
+                    </div>
+
 
                   <div class="form-group col-md-3">
                     <label>Date</label>
@@ -51,7 +57,7 @@
 
                   <div class="form-group col-md-3">
                     <button type="submit" class="btn btn-primary" style="margin-top: 32px;">Search</button>
-                    <a href="{{ route('admin.list') }}" class="btn btn-success" style="margin-top: 32px;">Reset</a>
+                    <a href="{{ route('subject.list') }}" class="btn btn-success" style="margin-top: 32px;">Reset</a>
                   </div>
                   
                 </div>
@@ -79,7 +85,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Admin List</h3>
+              <h3 class="card-title">Subject List</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -87,25 +93,35 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
+                    <th>Subject Name</th>
+                    <th>Subject Type</th>
+                    <th>Status</th>
+                    <th>Created By</th>
                     <th>Created Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($getRecord as $value)
-                    <tr>
-                      <td>{{ $value->id }}</td>
-                      <td>{{ $value->name }}</td>
-                      <td>{{ $value->email }}</td>
-                      <td>{{ date('d-m-Y H:i:A', strtotime($value->created_at)) }}</td>
-                      <td>
-                        <a href="{{ route('admin.edit', [$value->id]) }}" class="btn btn-primary">Edit</a>
-                        {{-- <a href="{{ url('admin/admin/edit'.$value->id) }}" class="btn btn-primary">Edit</a> --}}
-                        <a href="{{ url('admin/admin/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
-                      </td>
-                    </tr>
+                      <tr>
+                        <td>{{ $value->id }}</td>
+                        <td>{{ $value->name }}</td>
+                        <td>{{ $value->type }}</td>
+                        <td>
+                            @if ($value->status == 0)
+                                Active
+                            @else
+                                Inactive
+                                
+                            @endif
+                        </td>
+                        <td>{{ $value->created_by_name }}</td>
+                        <td>{{ date('d-m-Y H:i:A', strtotime($value->created_at)) }}</td>
+                        <td>
+                            <a href="{{ route('subject.edit', [$value->id]) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ url('admin/subject/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                      </tr>
                   @endforeach
                 </tbody>
               </table>

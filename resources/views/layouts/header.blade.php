@@ -105,4 +105,3 @@
 
 {{-- Header closed --}}
 
-@include('layouts.sidebar')
