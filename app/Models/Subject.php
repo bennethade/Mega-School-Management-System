@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 class Subject extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = "subjects";
 
@@ -38,7 +41,7 @@ class Subject extends Model
 
 
         $return = $return->where('subjects.is_delete', '=' ,0)
-                    ->orderBy('subjects.id', 'asc')
+                    ->orderBy('subjects.name', 'asc')
                     ->paginate(20);
 
         return $return;
@@ -49,6 +52,23 @@ class Subject extends Model
     {
         return self::findOrFail($id);
     }
+
+
+
+    static public function getSubject()
+    {
+        $return = Subject::select('subjects.*')
+                    ->join('users', 'users.id', 'subjects.created_by')
+                    ->where('subjects.is_delete', '=' ,0)
+                    ->where('subjects.status', '=' ,0)
+                    ->orderBy('subjects.name', 'asc')
+                    ->get();
+
+        return $return;
+    }
+
+
+
 
 
     

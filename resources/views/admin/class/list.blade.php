@@ -81,7 +81,7 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th>S/N</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Created By</th>
@@ -90,9 +90,13 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @php
+                    $id = 1
+                  @endphp
+
                   @foreach ($getRecord as $value)
                       <tr>
-                        <td>{{ $value->id }}</td>
+                        <td>{{ $id++ }}</td>
                         <td>{{ $value->name }}</td>
                         <td>
                             @if ($value->status == 0)

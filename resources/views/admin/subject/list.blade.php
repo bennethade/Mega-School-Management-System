@@ -101,10 +101,16 @@
                     <th>Action</th>
                   </tr>
                 </thead>
+
                 <tbody>
+
+                  @php
+                    $id = 1
+                  @endphp
+
                   @foreach ($getRecord as $value)
                       <tr>
-                        <td>{{ $value->id }}</td>
+                        <td>{{ $id++ }}</td>
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->type }}</td>
                         <td>

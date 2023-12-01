@@ -61,8 +61,9 @@ class ClassController extends Controller
     public function delete($id)
     {
         $class = ClassModel::getSingle($id);
-        $class->is_delete = 1;
-        $class->save();
+        $class->delete();
+        // $class->is_delete = 1;
+        // $class->save();
 
         return redirect()->route('class.list')->with('success','Class Deleted Successfull');
     }

@@ -85,6 +85,9 @@
             <div class="card-body p-0">
               <table class="table table-striped">
                 <thead>
+                  @php
+                    $id = 1
+                  @endphp
                   <tr>
                     <th>#</th>
                     <th>Name</th>
@@ -96,7 +99,7 @@
                 <tbody>
                   @foreach ($getRecord as $value)
                     <tr>
-                      <td>{{ $value->id }}</td>
+                      <td>{{ $id++ }}</td>
                       <td>{{ $value->name }}</td>
                       <td>{{ $value->email }}</td>
                       <td>{{ date('d-m-Y H:i:A', strtotime($value->created_at)) }}</td>

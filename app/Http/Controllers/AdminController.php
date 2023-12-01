@@ -73,7 +73,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'email' => 'required|email|unique:users,EMAIL,'.$id
+            'email' => 'required|email|unique:users,email,'.$id
         ]);
 
 
@@ -95,9 +95,9 @@ class AdminController extends Controller
     public function delete($id)
     {
         $user = User::findOrFail($id);
-        // $user->delete();
-        $user->is_delete = 1;
-        $user->save();
+        $user->delete();
+        // $user->is_delete = 1;
+        // $user->save();
         return redirect()->route('admin.list')->with('warning', 'Admin Deleted Successfully!');
     }
 
