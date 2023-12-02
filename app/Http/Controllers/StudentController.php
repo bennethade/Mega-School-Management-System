@@ -36,14 +36,14 @@ class StudentController extends Controller
 
         $request->validate([
             'email' => 'required|email|unique:users',
-            'blooad_group' => 'max:10',
-            'admission_number' => 'max:50',
-            'roll_number' => 'max:50',
-            'mobile_number' => 'max:15|min:8',
-            'caste' => 'max:50',
-            'religion' => 'max:50',
-            'height' => 'max:10',
-            'weight' => 'max:10'
+            // 'blooad_group' => 'max:10',
+            // 'admission_number' => 'max:50',
+            // 'roll_number' => 'max:50',
+            // 'mobile_number' => 'max:15|min:8',
+            // 'caste' => 'max:50',
+            // 'religion' => 'max:50',
+            // 'height' => 'max:10',
+            // 'weight' => 'max:10'
         ]); 
 
         $student = new User();
@@ -120,14 +120,14 @@ class StudentController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:users,email,'.$id,
-            'blooad_group' => 'max:10',
-            'admission_number' => 'max:50',
-            'roll_number' => 'max:50',
-            'mobile_number' => 'max:15|min:8',
-            'caste' => 'max:50',
-            'religion' => 'max:50',
-            'height' => 'max:10',
-            'weight' => 'max:10'
+            // 'blooad_group' => 'max:10',
+            // 'admission_number' => 'max:50',
+            // 'roll_number' => 'max:50',
+            // 'mobile_number' => 'max:15|min:8',
+            // 'caste' => 'max:50',
+            // 'religion' => 'max:50',
+            // 'height' => 'max:10',
+            // 'weight' => 'max:10'
         ]); 
 
         $student = User::getSingle($id);

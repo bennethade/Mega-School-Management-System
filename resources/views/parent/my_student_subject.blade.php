@@ -32,6 +32,7 @@
                               <th>S/N</th>
                               <th>Subject Name</th>
                               <th>Subject Type</th>
+                              <th>Action</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -43,6 +44,11 @@
                               <td>{{ $id++ }}</td>
                               <td>{{ $value->subject_name }}</td>
                               <td>{{ $value->subject_type }}</td>
+                              <td>
+                                 {{-- <a href="{{ url('parent/my_student/subject/class_timetable/' . $value->class_id . '/' . $value->subject_id) }}" class="btn btn-primary">My Class Timetable</a> --}}
+                                 {{-- <a href="{{ url('/parent/my_student/subject/class_timetable' . $value->class_id . $value->subject_id) }}" class="btn btn-primary">My Class Timetable</a> --}}
+                                 <a href="{{ route('parent.my_timetable',[$value->class_id, $value->subject_id, $getUser->id]) }}" class="btn btn-primary">My Class Timetable</a>
+                                </td>
                            </tr>
                            @endforeach
                         </tbody>

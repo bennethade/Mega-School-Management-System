@@ -64,7 +64,7 @@
                         
                         <div class="form-group col-md-6">
                             <label>Occupation <span style="color: red"></span> </label>
-                            <input type="text" class="form-control" name="occupation" placeholder="occupation" value="{{ old('occupation', $getRecord->occupatin) }}">
+                            <input type="text" class="form-control" name="occupation" placeholder="occupation" value="{{ old('occupation', $getRecord->occupation) }}">
                             <div style="color: red;">{{ $errors->first('occupation') }}</div>
                         </div>
 

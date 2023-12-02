@@ -46,7 +46,7 @@ class AssignClassTeacher extends Model
                         $return = $return->whereDate('assign_class_teachers.created_at', '=', Request::get('date'));
                     }
 
-        $return = $return->orderBy('assign_class_teachers.id', 'desc')
+        $return = $return->orderBy('assign_class_teachers.class_id', 'asc')
                     ->paginate(100);
 
         return $return;
@@ -56,7 +56,7 @@ class AssignClassTeacher extends Model
 
     static public function getMyClassSubject($teacher_id)
     {
-        return self::select('assign_class_teachers.*', 'classes.name as class_name', 'subjects.name as subject_name', 'subjects.type as subject_type')
+        return self::select('assign_class_teachers.*', 'classes.name as class_name', 'subjects.name as subject_name', 'subjects.type as subject_type', 'classes.id as class_id', 'subjects.id as subject_id')
                     ->join('classes', 'classes.id', '=', 'assign_class_teachers.class_id')
                     ->join('class_subjects', 'class_subjects.class_id', '=', 'classes.id')
                     ->join('subjects', 'subjects.id', '=', 'class_subjects.subject_id')
@@ -86,6 +86,17 @@ class AssignClassTeacher extends Model
     {
         return self::where('teacher_id', $teacher_id)->delete();
     }
+
+
+
+    static public function getMyTimetable($class_id, $subject_id)
+    {
+        $getWeek = Week::getWeekUsingName(date('l'));
+
+        return ClassSubjectTimetable::getRecordClassSubject($class_id, $subject_id, $getWeek->id);
+    }
+
+
 
 
 

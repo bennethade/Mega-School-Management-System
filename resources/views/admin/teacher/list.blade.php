@@ -13,7 +13,7 @@
           <h1>Teacher List : ({{ $getRecord->total() }}) Total Teachers</h1>
         </div>
         <div class="col-sm-6" style="text-align: right;">
-          <a href="{{ route('teacher.add') }}" class="btn btn-primary">Add New Student</a>
+          <a href="{{ route('teacher.add') }}" class="btn btn-primary">Add New Teacher</a>
           
         </div>
         

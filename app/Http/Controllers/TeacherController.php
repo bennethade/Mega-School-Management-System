@@ -33,8 +33,8 @@ class TeacherController extends Controller
 
         $request->validate([
             'email' => 'required|email|unique:users',
-            'mobile_number' => 'max:15|min:8',
-            'marital_status' => 'max:50',
+            // 'mobile_number' => 'max:15|min:8',
+            // 'marital_status' => 'max:50',
         ]); 
 
         $teacher = new User();
@@ -109,8 +109,8 @@ class TeacherController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:users,email,'.$id,
-            'mobile_number' => 'max:15|min:8',
-            'marital_status' => 'max:50',
+            // 'mobile_number' => 'max:15|min:8',
+            // 'marital_status' => 'max:50',
         ]); 
 
         $teacher = User::getSingle($id);
