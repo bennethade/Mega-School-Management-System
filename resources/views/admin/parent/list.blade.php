@@ -168,7 +168,7 @@
                       <td  style="min-width: 230px;">
                         <a href="{{ route('parent.edit', [$value->id]) }}" class="btn btn-warning btn-sm">Edit</a>
                         {{-- <a href="{{ url('admin/admin/edit'.$value->id) }}" class="btn btn-primary">Edit</a> --}}
-                        <a href="{{ url('admin/parent/my-student'.$value->id) }}" class="btn btn-primary btn-sm">My Student</a>
+                        <a href="{{ url('admin/parent/my-student/'.$value->id) }}" class="btn btn-primary btn-sm">My Student</a>
                         <a href="{{ url('admin/parent/delete/'.$value->id) }}" class="btn btn-danger btn-sm">Delete</a>
                       </td>
                     </tr>

@@ -7,6 +7,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -50,8 +51,8 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/admin/list', [AdminController::class,'list'])->name('admin.list');
     Route::get('admin/admin/add', [AdminController::class,'add'])->name('admin.add');
     Route::post('admin/admin/add', [AdminController::class,'insert'])->name('admin.insert');
-    Route::get('admin/admin/edit{id}', [AdminController::class,'edit'])->name('admin.edit');
-    Route::post('admin/admin/edit{id}', [AdminController::class,'update'])->name('admin.update');
+    Route::get('admin/admin/edit/{id}', [AdminController::class,'edit'])->name('admin.edit');
+    Route::post('admin/admin/edit/{id}', [AdminController::class,'update'])->name('admin.update');
     Route::get('admin/admin/delete/{id}', [AdminController::class,'delete'])->name('admin.delete');
 
     
@@ -60,8 +61,8 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/teacher/list', [TeacherController::class,'list'])->name('teacher.list');
     Route::get('admin/teacher/add', [TeacherController::class,'add'])->name('teacher.add');
     Route::post('admin/teacher/add', [TeacherController::class,'insert'])->name('teacher.insert');
-    Route::get('admin/teacher/edit{id}', [TeacherController::class,'edit'])->name('teacher.edit');
-    Route::post('admin/teacher/edit{id}', [TeacherController::class,'update'])->name('teacher.update');
+    Route::get('admin/teacher/edit/{id}', [TeacherController::class,'edit'])->name('teacher.edit');
+    Route::post('admin/teacher/edit/{id}', [TeacherController::class,'update'])->name('teacher.update');
     Route::get('admin/teacher/delete/{id}', [TeacherController::class,'delete'])->name('teacher.delete');
 
 
@@ -72,8 +73,8 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/student/list', [StudentController::class,'list'])->name('student.list');
     Route::get('admin/student/add', [StudentController::class,'add'])->name('student.add');
     Route::post('admin/student/add', [StudentController::class,'insert'])->name('student.insert');
-    Route::get('admin/student/edit{id}', [StudentController::class,'edit'])->name('student.edit');
-    Route::post('admin/student/edit{id}', [StudentController::class,'update'])->name('student.update');
+    Route::get('admin/student/edit/{id}', [StudentController::class,'edit'])->name('student.edit');
+    Route::post('admin/student/edit/{id}', [StudentController::class,'update'])->name('student.update');
     Route::get('admin/student/delete/{id}', [StudentController::class,'delete'])->name('student.delete');
 
 
@@ -83,17 +84,15 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/parent/list', [ParentController::class,'list'])->name('parent.list');
     Route::get('admin/parent/add', [ParentController::class,'add'])->name('parent.add');
     Route::post('admin/parent/add', [ParentController::class,'insert'])->name('parent.insert');
-    Route::get('admin/parent/edit{id}', [ParentController::class,'edit'])->name('parent.edit');
-    Route::post('admin/parent/edit{id}', [ParentController::class,'update'])->name('parent.update');
+    Route::get('admin/parent/edit/{id}', [ParentController::class,'edit'])->name('parent.edit');
+    Route::post('admin/parent/edit/{id}', [ParentController::class,'update'])->name('parent.update');
     Route::get('admin/parent/delete/{id}', [ParentController::class,'delete'])->name('parent.delete');
-    Route::get('admin/parent/delete/{id}', [ParentController::class,'delete'])->name('parent.delete');
-    Route::get('admin/parent/my-student{id}', [ParentController::class,'myStudent'])->name('parent.my.student');
-    Route::get('admin/parent/assign_student_to_parent/{student_id}/{parent_id}', [ParentController::class,'assignStudentToParent'])->name('parent.my.student');
-    Route::get('admin/parent/delete_assign_student_to_parent/{student_id}', [ParentController::class,'deleteAssignStudentToParent'])->name('delete.parent.my.student');
+    Route::get('admin/parent/my-student/{id}', [ParentController::class,'myStudent'])->name('parent.my.student');
+    Route::get('admin/parent/assign_student_to_parent/{student_id}/{parent_id}', [ParentController::class,'assignStudentToParent'])->name('parent.assign.student');
+    Route::get('admin/parent/delete_assign_student_to_parent/{student_id}', [ParentController::class,'deleteAssignStudentToParent'])->name('delete.parent.assigned.student');
 
 
     
-
 
 
 
@@ -101,8 +100,8 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/class/list', [ClassController::class,'list'])->name('class.list');
     Route::get('admin/class/add', [ClassController::class,'add'])->name('class.add');
     Route::post('admin/class/add', [ClassController::class,'insert'])->name('class.insert');
-    Route::get('admin/class/edit{id}', [ClassController::class,'edit'])->name('class.edit');
-    Route::post('admin/class/edit{id}', [ClassController::class,'update'])->name('class.update');
+    Route::get('admin/class/edit/{id}', [ClassController::class,'edit'])->name('class.edit');
+    Route::post('admin/class/edit/{id}', [ClassController::class,'update'])->name('class.update');
     Route::get('admin/class/delete/{id}', [ClassController::class,'delete'])->name('class.delete');
 
 
@@ -111,8 +110,8 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/subject/list', [SubjectController::class,'list'])->name('subject.list');
     Route::get('admin/subject/add', [SubjectController::class,'add'])->name('subject.add');
     Route::post('admin/subject/add', [SubjectController::class,'insert'])->name('subject.insert');
-    Route::get('admin/subject/edit{id}', [SubjectController::class,'edit'])->name('subject.edit');
-    Route::post('admin/subject/edit{id}', [SubjectController::class,'update'])->name('subject.update');
+    Route::get('admin/subject/edit/{id}', [SubjectController::class,'edit'])->name('subject.edit');
+    Route::post('admin/subject/edit/{id}', [SubjectController::class,'update'])->name('subject.update');
     Route::get('admin/subject/delete/{id}', [SubjectController::class,'delete'])->name('subject.delete');
 
 
@@ -123,11 +122,11 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/assign_subject/add', [ClassSubjectController::class,'add'])->name('assign_subject.add');
     Route::post('admin/assign_subject/add', [ClassSubjectController::class,'insert'])->name('assign_subject.insert');
 
-    Route::get('admin/assign_subject/edit_single{id}', [ClassSubjectController::class,'editSingle'])->name('assign_subject.edit_single');
-    Route::post('admin/assign_subject/edit_single{id}', [ClassSubjectController::class,'updateSingle'])->name('assign_subject.update_single');
+    Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class,'editSingle'])->name('assign_subject.edit_single');
+    Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class,'updateSingle'])->name('assign_subject.update_single');
 
-    Route::get('admin/assign_subject/mass_edit{id}', [ClassSubjectController::class,'massEdit'])->name('assign_subject.mass_edit');
-    Route::post('admin/assign_subject/mass_edit{id}', [ClassSubjectController::class,'massUpdate'])->name('assign_subject.mass_update');
+    Route::get('admin/assign_subject/mass_edit/{id}', [ClassSubjectController::class,'massEdit'])->name('assign_subject.mass_edit');
+    Route::post('admin/assign_subject/mass_edit/{id}', [ClassSubjectController::class,'massUpdate'])->name('assign_subject.mass_update');
 
     Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class,'delete'])->name('assign_subject.delete');
 
@@ -161,17 +160,30 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/assign_class_teacher/list', [AssignClassTeacherController::class,'list'])->name('assign_class_teacher.list');
     Route::get('admin/assign_class_teacher/add', [AssignClassTeacherController::class,'add'])->name('assign_class_teacher.add');
     Route::post('admin/assign_class_teacher/add', [AssignClassTeacherController::class,'insert'])->name('assign_class_teacher.insert');
-    Route::get('admin/assign_class_teacher/mass_edit{id}', [AssignClassTeacherController::class,'massEdit'])->name('assign_class_teacher.mass_edit');
-    Route::post('admin/assign_class_teacher/mass_edit{id}', [AssignClassTeacherController::class,'massUpdate'])->name('assign_class_teacher.mass_update');
-    Route::get('admin/assign_class_teacher/edit_single{id}', [AssignClassTeacherController::class,'editSingle'])->name('assign_class_teacher.edit_single');
-    Route::post('admin/assign_class_teacher/edit_single{id}', [AssignClassTeacherController::class,'updateSingle'])->name('assign_class_teacher.update_single');
-    Route::get('admin/assign_class_teacher/delete{id}', [AssignClassTeacherController::class,'delete'])->name('assign_class_teacher.delete');
+    Route::get('admin/assign_class_teacher/mass_edit/{id}', [AssignClassTeacherController::class,'massEdit'])->name('assign_class_teacher.mass_edit');
+    Route::post('admin/assign_class_teacher/mass_edit/{id}', [AssignClassTeacherController::class,'massUpdate'])->name('assign_class_teacher.mass_update');
+    Route::get('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class,'editSingle'])->name('assign_class_teacher.edit_single');
+    Route::post('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class,'updateSingle'])->name('assign_class_teacher.update_single');
+    Route::get('admin/assign_class_teacher/delete/{id}', [AssignClassTeacherController::class,'delete'])->name('assign_class_teacher.delete');
 
 
 
+
+    ///EXAMINATION ROUTES
+    Route::get('admin/examinations/exam/list', [ExaminationsController::class,'examList'])->name('examinations.list');
+    Route::get('admin/examinations/exam/add', [ExaminationsController::class,'examAdd'])->name('examinations.add');
+    Route::post('admin/examinations/exam/add', [ExaminationsController::class,'examInsert'])->name('examinations.insert');
+    Route::get('admin/examinations/exam/edit/{id}', [ExaminationsController::class,'examEdit'])->name('examinations.edit');
+    Route::post('admin/examinations/exam/edit/{id}', [ExaminationsController::class,'examUpdate'])->name('examinations.update');
+    Route::get('admin/examinations/exam/delete/{id}', [ExaminationsController::class,'examDelete'])->name('examinations.delete');
+
+
+
+    Route::get('admin/examinations/exam_schedule', [ExaminationsController::class,'examSchedule'])->name('examinations.exam_schedule');
+    Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class,'examScheduleInsert'])->name('examinations.exam_schedule.insert');
     
 
-    
+
 
 });
 //===ADMIN ROUTE GROUP END===///
@@ -200,7 +212,11 @@ Route::group(['middleware' => 'teacher'], function(){
 
 
     Route::get('teacher/my_class_subject', [AssignClassTeacherController::class,'myClassSubject'])->name('teacher.my_class_subject');
-    Route::get('teacher/my_class_subject/class_timetable{class_id}{subject_id}', [ClassTimetableController::class,'myTimetableTeacher'])->name('teacher.my_timetable');
+
+    Route::get('teacher/my_class_subject/class_timetable/{class_id}/{subject_id}', [ClassTimetableController::class,'myTimetableTeacher'])->name('teacher.my_timetable');
+
+    Route::get('teacher/my_exam_timetable', [ExaminationsController::class,'myExamTimetableTeacher'])->name('teacher.my_exam_timetable');
+
 
 
     
@@ -230,6 +246,8 @@ Route::group(['middleware' => 'student'], function(){
     
     Route::get('student/my_timetable', [ClassTimetableController::class,'myTimetable'])->name('student.my_timetable');
 
+    Route::get('student/my_exam_timetable', [ExaminationsController::class,'myExamTimetable'])->name('student.my_exam_timetable');
+
 
 });
 //===STUDENT ROUTE GROUP END===///
@@ -248,16 +266,16 @@ Route::group(['middleware' => 'parent'], function(){
     Route::post('parent/account', [UserController::class,'updateMyParentAccount'])->name('update.parent.account');
     
 
-
     Route::get('parent/change_password', [UserController::class,'changePassword'])->name('change_password');
     Route::post('parent/change_password', [UserController::class,'updatePassword'])->name('update_password');
 
 
-    Route::get('parent/my_student/subject{student_id}', [SubjectController::class,'parentStudentSubject'])->name('parent.student.subject');
+    Route::get('parent/my_student/subject/{student_id}', [SubjectController::class,'parentStudentSubject'])->name('parent.student.subject');
 
-    // Route::get('parent/my_student/class_timetable{class_id}{subject_id}', [ClassTimetableController::class,'myTimetableParent'])->name('parent.my_timetable');
-    Route::get('class_timetable/{class_id}/{subject_id}{student_id}', [ClassTimetableController::class,'myTimetableParent'])->name('parent.my_timetable');
-    
+    Route::get('parent/my_student/exam_timetable/{student_id}', [ExaminationsController::class,'parentMyExamTimetable'])->name('parent.student.exam_timetable');
+
+
+    Route::get('parent/my_student/class_timetable/{class_id}/{subject_id}/{student_id}', [ClassTimetableController::class,'myTimetableParent'])->name('parent.my_timetable');    
 
 
     Route::get('parent/my_student', [ParentController::class,'myStudentParentSide'])->name('parent.my_student');

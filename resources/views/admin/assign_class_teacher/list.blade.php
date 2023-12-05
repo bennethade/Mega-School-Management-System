@@ -111,8 +111,8 @@
                        <td>{{ date('d-m-Y H:i:A', strtotime($value->created_at)) }}</td>
                        <td>
                           <a href="{{ route('assign_class_teacher.mass_edit', [$value->id]) }}" class="btn btn-primary">Mass Edit</a>
-                          <a href="{{ url('admin/assign_class_teacher/edit_single'.$value->id) }}" class="btn btn-warning">Single Edit</a>
-                          <a href="{{ url('admin/assign_class_teacher/delete'.$value->id) }}" class="btn btn-danger">Delete</a>
+                          <a href="{{ url('admin/assign_class_teacher/edit_single/'.$value->id) }}" class="btn btn-warning">Single Edit</a>
+                          <a href="{{ url('admin/assign_class_teacher/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
                        </td>
                     </tr>
                     @endforeach

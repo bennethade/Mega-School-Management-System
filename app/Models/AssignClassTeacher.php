@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class AssignClassTeacher extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
 
     static public function getSingle($id)
@@ -65,6 +67,20 @@ class AssignClassTeacher extends Model
                     ->where('subjects.status', '=' ,0)
                     ->where('class_subjects.status', '=' ,0)
                     ->where('assign_class_teachers.teacher_id', '=', $teacher_id)
+                    ->get();
+
+    }
+
+
+
+    static public function getMyClassSubjectGroup($teacher_id)
+    {
+        return self::select('assign_class_teachers.*', 'classes.name as class_name', 'classes.id as class_id')
+                    ->join('classes', 'classes.id', '=', 'assign_class_teachers.class_id') 
+                    ->where('assign_class_teachers.is_delete', '=' ,0)
+                    ->where('assign_class_teachers.status', '=' ,0)
+                    ->where('assign_class_teachers.teacher_id', '=', $teacher_id)
+                    ->groupBy('assign_class_teachers.class_id')
                     ->get();
 
     }

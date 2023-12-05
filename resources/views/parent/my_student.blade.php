@@ -78,8 +78,9 @@
                                         <td>{{ $value->height }}</td>
                                         <td>{{ $value->keep_track }}</td>
                                         <td style="min-width: 100px;">{{ date('d-m-Y H:i:A', strtotime($value->created_at)) }}</td>
-                                        <td style="min-width: 100px;">
-                                            <a class="btn btn-primary btn-sm" href="{{ url('parent/my_student/subject'.$value->id) }}">Subjects</a>
+                                        <td style="min-width: 250px;">
+                                            <a class="btn btn-warning btn-sm" href="{{ route('parent.student.subject', [$value->id]) }}">Subjects</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('parent.student.exam_timetable', [$value->id]) }}">Exam Timetable</a>
                                         </td>
                                     </tr>
                                     @endforeach

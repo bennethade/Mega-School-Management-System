@@ -19,6 +19,8 @@ return new class extends Migration
             $table->tinyInteger('is_delete')->default(0);
             $table->integer('created_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
